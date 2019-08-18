@@ -1,0 +1,9 @@
+D:\FreelanceProjects\MvcApplication1\MvcApplication1\LMS.Core.Data\bin\Debug\netstandard2.0\LMS.Core.Data.deps.json
+D:\FreelanceProjects\MvcApplication1\MvcApplication1\LMS.Core.Data\bin\Debug\netstandard2.0\LMS.Core.Data.dll
+D:\FreelanceProjects\MvcApplication1\MvcApplication1\LMS.Core.Data\bin\Debug\netstandard2.0\LMS.Core.Data.pdb
+D:\FreelanceProjects\MvcApplication1\MvcApplication1\LMS.Core.Data\obj\Debug\netstandard2.0\LMS.Core.Data.csprojAssemblyReference.cache
+D:\FreelanceProjects\MvcApplication1\MvcApplication1\LMS.Core.Data\obj\Debug\netstandard2.0\LMS.Core.Data.csproj.CoreCompileInputs.cache
+D:\FreelanceProjects\MvcApplication1\MvcApplication1\LMS.Core.Data\obj\Debug\netstandard2.0\LMS.Core.Data.AssemblyInfoInputs.cache
+D:\FreelanceProjects\MvcApplication1\MvcApplication1\LMS.Core.Data\obj\Debug\netstandard2.0\LMS.Core.Data.AssemblyInfo.cs
+D:\FreelanceProjects\MvcApplication1\MvcApplication1\LMS.Core.Data\obj\Debug\netstandard2.0\LMS.Core.Data.dll
+D:\FreelanceProjects\MvcApplication1\MvcApplication1\LMS.Core.Data\obj\Debug\netstandard2.0\LMS.Core.Data.pdb

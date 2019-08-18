@@ -1,0 +1,11 @@
+D:\FreelanceProjects\LMS\LMS.App.Common\bin\Debug\LMS.App.Common.dll
+D:\FreelanceProjects\LMS\LMS.App.Common\bin\Debug\LMS.App.Common.pdb
+D:\FreelanceProjects\LMS\LMS.App.Common\bin\Debug\EntityFramework.dll
+D:\FreelanceProjects\LMS\LMS.App.Common\bin\Debug\log4net.dll
+D:\FreelanceProjects\LMS\LMS.App.Common\bin\Debug\EntityFramework.xml
+D:\FreelanceProjects\LMS\LMS.App.Common\bin\Debug\log4net.xml
+D:\FreelanceProjects\LMS\LMS.App.Common\obj\Debug\LMS.App.Common.csproj.CoreCompileInputs.cache
+D:\FreelanceProjects\LMS\LMS.App.Common\obj\Debug\LMS.App.Common.csproj.CopyComplete
+D:\FreelanceProjects\LMS\LMS.App.Common\obj\Debug\LMS.App.Common.dll
+D:\FreelanceProjects\LMS\LMS.App.Common\obj\Debug\LMS.App.Common.pdb
+D:\FreelanceProjects\LMS\LMS.App.Common\obj\Debug\LMS.App.Common.csprojAssemblyReference.cache

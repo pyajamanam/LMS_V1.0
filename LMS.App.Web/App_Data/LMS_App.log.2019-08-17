@@ -1,0 +1,33 @@
+2019-08-17 01:35:20,753 INFO MonitoringLogger - Login-page started...
+2019-08-17 12:34:10,897 INFO MonitoringLogger - Login-page started...
+2019-08-17 14:13:41,505 INFO MonitoringLogger - MembershipService.ValidateUser Completed
+2019-08-17 14:13:41,505 INFO MonitoringLogger - MembershipService.ValidateUser Completed
+2019-08-17 15:02:56,653 INFO MonitoringLogger - User Authedication failed ...LMS.App.Web.Filters.CustomAuthorize
+2019-08-17 15:02:56,843 INFO MonitoringLogger - Login-page started...
+2019-08-17 15:03:23,449 INFO MonitoringLogger - MembershipService.ValidateUser Completed
+2019-08-17 16:05:38,224 INFO MonitoringLogger - User Authedication failed ...LMS.App.Web.Filters.CustomAuthorize
+2019-08-17 16:05:38,806 INFO MonitoringLogger - Login-page started...
+2019-08-17 16:19:01,379 INFO MonitoringLogger - Login-page started...
+2019-08-17 17:38:26,793 INFO DotNetOpenAuth - DotNetOpenAuth.Core, Version=4.1.4.12333, Culture=neutral, PublicKeyToken=2780ccd10d57b246 (official)
+2019-08-17 17:38:26,851 INFO DotNetOpenAuth - Reporting will use isolated storage with scope: User, Domain, Assembly
+2019-08-17 17:39:46,517 INFO DotNetOpenAuth - DotNetOpenAuth.Core, Version=4.1.4.12333, Culture=neutral, PublicKeyToken=2780ccd10d57b246 (official)
+2019-08-17 17:39:46,556 INFO DotNetOpenAuth - Reporting will use isolated storage with scope: User, Domain, Assembly
+2019-08-17 17:39:50,476 INFO MonitoringLogger - Login-page started...
+2019-08-17 18:16:44,481 INFO DotNetOpenAuth - DotNetOpenAuth.Core, Version=4.1.4.12333, Culture=neutral, PublicKeyToken=2780ccd10d57b246 (official)
+2019-08-17 18:16:44,518 INFO DotNetOpenAuth - Reporting will use isolated storage with scope: User, Domain, Assembly
+2019-08-17 18:24:30,158 INFO DotNetOpenAuth - DotNetOpenAuth.Core, Version=4.1.4.12333, Culture=neutral, PublicKeyToken=2780ccd10d57b246 (official)
+2019-08-17 18:24:30,159 INFO DotNetOpenAuth - Reporting will use isolated storage with scope: User, Domain, Assembly
+2019-08-17 21:21:31,708 INFO DotNetOpenAuth - DotNetOpenAuth.Core, Version=4.1.4.12333, Culture=neutral, PublicKeyToken=2780ccd10d57b246 (official)
+2019-08-17 21:21:31,745 INFO DotNetOpenAuth - Reporting will use isolated storage with scope: User, Domain, Assembly
+2019-08-17 22:08:52,528 INFO DotNetOpenAuth - DotNetOpenAuth.Core, Version=4.1.4.12333, Culture=neutral, PublicKeyToken=2780ccd10d57b246 (official)
+2019-08-17 22:08:52,552 INFO DotNetOpenAuth - Reporting will use isolated storage with scope: User, Domain, Assembly
+2019-08-17 22:22:42,793 INFO MonitoringLogger - Login-page started...
+2019-08-17 22:26:30,320 INFO DotNetOpenAuth - DotNetOpenAuth.Core, Version=4.1.4.12333, Culture=neutral, PublicKeyToken=2780ccd10d57b246 (official)
+2019-08-17 22:26:30,376 INFO DotNetOpenAuth - Reporting will use isolated storage with scope: User, Domain, Assembly
+2019-08-17 22:31:47,705 INFO DotNetOpenAuth - DotNetOpenAuth.Core, Version=4.1.4.12333, Culture=neutral, PublicKeyToken=2780ccd10d57b246 (official)
+2019-08-17 22:31:47,727 INFO DotNetOpenAuth - Reporting will use isolated storage with scope: User, Domain, Assembly
+2019-08-17 22:31:50,378 INFO MonitoringLogger - Login-page started...
+2019-08-17 23:50:07,937 INFO DotNetOpenAuth - DotNetOpenAuth.Core, Version=4.1.4.12333, Culture=neutral, PublicKeyToken=2780ccd10d57b246 (official)
+2019-08-17 23:50:07,974 INFO DotNetOpenAuth - Reporting will use isolated storage with scope: User, Domain, Assembly
+2019-08-17 23:51:02,669 INFO DotNetOpenAuth - DotNetOpenAuth.Core, Version=4.1.4.12333, Culture=neutral, PublicKeyToken=2780ccd10d57b246 (official)
+2019-08-17 23:51:02,691 INFO DotNetOpenAuth - Reporting will use isolated storage with scope: User, Domain, Assembly

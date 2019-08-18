@@ -1,0 +1,41 @@
+﻿@using LMS.App.Web.Controllers
+@model LMS.App.Core.Data.Entities.User
+@{
+    ViewBag.Title = "Home Page";
+}
+<h2>@ViewBag.Message</h2>
+@using (Html.BeginForm("Admin", "Home", FormMethod.Post))
+{
+    <div>
+        <fieldset>
+            <legend>My Profile</legend>
+            <div class="editor-label">
+                @Html.LabelFor(m => m.UserName)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(m => m.UserEmailAddress)
+            </div>
+
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.UserEmailAddress)
+                @Html.ValidationMessageFor(m => m.UserEmailAddress)
+            </div>
+
+            <div class="editor-label">
+                @Html.Label("User Role")
+            </div>
+            <div class="editor-label">
+
+
+                @Html.DropDownListFor(m=>m.UserRoles.First().RoleId, ListProvider.GetRoles(2), new { @readonly = "readonly" })
+            </div>
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        </fieldset>
+    </div>
+}

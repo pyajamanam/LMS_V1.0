@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "Agent";
+}
+@if(User.IsInRole("Agent"))
+{<h2>Agent Login</h2>}
+else
+{
+    <h2>Delear Login</h2>
+}

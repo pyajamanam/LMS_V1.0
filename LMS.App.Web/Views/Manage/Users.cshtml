@@ -1,0 +1,189 @@
+﻿@model IEnumerable<LMS.App.Web.Models.UserViewModel>
+
+@{
+    ViewBag.Title = "Users";
+}
+
+<script src="~/js/UserEdit.js"></script>
+
+<head>
+    <style>
+
+        .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+            /* border-bottom: 1px solid #dee2e6; */
+            /* background-color: darkgreen; */
+            color: #555;
+            cursor: default;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-bottom-color: transparent;
+        }
+
+        .nav-tabs > li > a {
+            padding: 10px 15px;
+            margin-right: 2px;
+            line-height: 1.42857143;
+            /*border-radius: 4px 4px 0 0;*/
+            tab-size: 10%;
+            /* font-size: medium; */
+            background-color: #fff;
+        }
+
+        .nav-tabs {
+            /* border-bottom: 1px solid #dee2e6; */
+        }
+
+        a {
+            color: #337ab7;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: none;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#allusers">All Users</a></li>
+            <li><a href="#activeusers">Users List</a></li>
+            <li><a href="#inactiveusers">Iactive Users</a></li>
+
+        </ul>
+        <div>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New User</button><br /><br />
+        </div>
+
+        <div class="tab-content">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FullName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.EmailAddress)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Role)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Inactive)
+                            </th>
+                            <th>Action</th>
+                        </tr>
+                        <tbody class="tbody"></tbody>
+                    </table>
+                    <span id="norecords"></span>
+                </div>
+            </div>
+            @*<div id="menu3" class="tab-pane fade">
+                    <h3>Menu 3</h3>
+                    <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                </div>*@
+        </div>
+        @*<hr>
+            <p class="act"><b>Active Tab</b>: <span></span></p>
+
+            <p class="prev"><b>Previous Tab</b>: <span></span></p>*@
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            loadData();
+            $(".nav-tabs a").click(function () {
+                $(this).tab('show');
+            });
+            $('.nav-tabs a').on('shown.bs.tab', function (event) {
+                debugger;
+                // alert($(this).attr('href'));
+                var tab = $(this).attr('href');
+                switch (tab) {
+                    case "#activeusers":
+                        loadData();
+                        event.preventDefault();
+                        break;
+                    case "#inactiveusers":
+                        loadInactiveUsers();
+                        event.preventDefault();
+                        break;
+                    default:
+                        event.preventDefault();
+                        break;
+                }
+                // loadData();
+                var x = $(event.target).text();         // active tab
+                var y = $(event.relatedTarget).text();  // previous tab
+                $(".act span").text(x);
+                $(".prev span").text(y);
+            });
+        });
+    </script>
+
+</body>
+
+@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">*@
+
+<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<button type="button" class="close" data-dissmiss="modal"><span aria-hidden="true">×</span></button>*@
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title" id="myModalLabel">Add Employee</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="UserId">ID</label>
+                        <input type="text" class="form-control" id="UserId" placeholder="Id" disabled="disabled" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Name">Name</label>
+                        <input type="text" class="form-control" id="Name" placeholder="Name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Name">Full Name</label>
+                        <input type="text" class="form-control" id="FullName" placeholder="FullName" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Country">Email</label>
+                        <input type="text" class="form-control" id="Email" placeholder="Email" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Country">Password</label>
+                        <input type="password" class="form-control" id="Password" placeholder="New Password" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Country">Roles</label>
+                        <select class="form-control" id="ddlRoles">
+                            <option value="0">--Select Role--</option>
+                            <option value="1">Admin</option>
+                            <option value="2">User</option>
+                            <option value="3">Trainee</option>
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="Country">InActive</label>
+                        <input type="checkbox" class="form-control" id="InActive" placeholder="InActive" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Add</button>
+                <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
