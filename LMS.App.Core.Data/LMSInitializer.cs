@@ -36,11 +36,19 @@ namespace LMS.App.Core.Data
                         Remark = "Remarks"
                     });
                 }
-                var courses = new List<Course> { new Course { CourseId = 1, CourseName = "Blue course", Venue = "cLASROOM" } };
+                var courses = new List<Course> { new Course { CourseId = 1, CourseName = "Blue course", Venue = "cLASROOM" },
+                                                new Course { CourseId = 2, CourseName = "saftey course", Venue = "cLASROOM" }
+                };
+
                 var courseEnrolement = new List<CourseEnrollment>
                 {
                     new CourseEnrollment {
                         UserId = 1,
+                        TrainerId = 1,
+                        CourseId =1
+                    },
+                     new CourseEnrollment {
+                        UserId = 2,
                         TrainerId = 1,
                         CourseId =1
                     }
@@ -51,7 +59,7 @@ namespace LMS.App.Core.Data
                         Courses = courses,
                         QualificationName = "Blue Code course",
                         FortColorCardId = 1,
-                        ColorId =1
+                        ColorId =1,
                         //ColorId = 1,
                         //FortColorCardId =1,
                 } };
@@ -66,7 +74,7 @@ namespace LMS.App.Core.Data
                         FullName = "admin Name",
                         Address ="addres",ContactNo="conta",
                         EmergencyContactNo ="EmergencyContactNo",
-                        Designation ="Designaton",EmployeeId = "EMP001"
+                        Designation ="Designaton",EmployeeId = "EMP001",
                     },
                     IsDeleted = false,
                     ActivationCode = Guid.NewGuid(),
@@ -96,7 +104,7 @@ namespace LMS.App.Core.Data
                 {
                     CountryId = 1,
                     CompanyId = 1,
-                    UserName = "admin",
+                    UserName = "trainer",
                     UserEmailAddress = "trainer@trainer.com",
                     UserDetails =  new UserDetails{
                         FullName = "trainer Name",
@@ -121,8 +129,11 @@ namespace LMS.App.Core.Data
                 //base tables 
                 context.Countries.AddRange(countries);
                 context.Companies.AddRange(companies);
+                context.Courses.AddRange(courses);
                 //base tables end
                 context.Users.AddRange(users);
+                context.Qualifications.AddRange(qualifications);
+                context.CourseEnrollments.AddRange(courseEnrolement);
                 context.SaveChanges();
             }
             catch (DbEntityValidationException ex)

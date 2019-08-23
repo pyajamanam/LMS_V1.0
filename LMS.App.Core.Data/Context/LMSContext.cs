@@ -55,9 +55,10 @@ namespace LMS.App.Core.Data.Contexts
         public DbSet<Company> Companies { get; set; }
         public DbSet<Country> Countries { get; set; }
 
-        public DbSet<Course> Course { get; set; }
+        public DbSet<Course> Courses { get; set; }
         public DbSet<CourseEnrollment> CourseEnrollments { get; set; }
-        
+        public DbSet<Qualification> Qualifications { get; set; }
+
 
         public void AddUser(User user)
         {
