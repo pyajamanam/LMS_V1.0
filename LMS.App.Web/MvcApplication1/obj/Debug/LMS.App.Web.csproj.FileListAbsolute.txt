@@ -1,4 +1,0 @@
-D:\FreelanceProjects\MvcApplication1\MvcApplication1\MvcApplication1\obj\Debug\LMS.App.Web.csprojAssemblyReference.cache
-D:\FreelanceProjects\MvcApplication1\MvcApplication1\MvcApplication1\obj\Debug\LMS.App.Web.csproj.CoreCompileInputs.cache
-D:\FreelanceProjects\MvcApplication1\MvcApplication1\MvcApplication1\obj\Debug\LMS.App.Web.dll
-D:\FreelanceProjects\MvcApplication1\MvcApplication1\MvcApplication1\obj\Debug\LMS.App.Web.pdb

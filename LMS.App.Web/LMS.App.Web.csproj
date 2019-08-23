@@ -2091,7 +2091,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Contexts\" />
-    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
