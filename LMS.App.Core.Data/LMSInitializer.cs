@@ -1,4 +1,5 @@
 ﻿using LMS.App.Common;
+using LMS.App.Common.Enums;
 using LMS.App.Common.Helpers;
 using LMS.App.Core.Data.Contexts;
 using LMS.App.Core.Data.Entities;
@@ -35,19 +36,41 @@ namespace LMS.App.Core.Data
                         Remark = "Remarks"
                     });
                 }
-
-                var courses = new List<Course> { new Course { CourseId = 1, CourseName = "cn", Venue = "indoor" } };
+                var courses = new List<Course> { new Course { CourseId = 1, CourseName = "Blue course", Venue = "cLASROOM" } };
+                var courseEnrolement = new List<CourseEnrollment>
+                {
+                    new CourseEnrollment {
+                        UserId = 1,
+                        TrainerId = 1,
+                        CourseId =1
+                    }
+                };
+                var qualifications = new List<Qualification> {
+                    new Qualification {
+                        QualificationCode ="BC-110",
+                        Courses = courses,
+                        QualificationName = "Blue Code course",
+                        FortColorCardId = 1,
+                        ColorId =1
+                        //ColorId = 1,
+                        //FortColorCardId =1,
+                } };
                 var users = new List<User>{
                     new User()
                 {
-                    UserEmailAddress = "admin@dmin.com",
-                    FullName = "admin Name",
+                    CountryId = 1,
+                    CompanyId = 1,
                     UserName = "admin",
+                    UserEmailAddress = "admin@dmin.com",
+                    UserDetails =  new UserDetails{
+                        FullName = "admin Name",
+                        Address ="addres",ContactNo="conta",
+                        EmergencyContactNo ="EmergencyContactNo",
+                        Designation ="Designaton",EmployeeId = "EMP001"
+                    },
                     IsDeleted = false,
                     ActivationCode = Guid.NewGuid(),
                     Password = PasswordHelper.GetMd5Hash("123456"),
-                    CompanyId = 1,
-                    CountryId = 1,
                     Roles = new List<Role> {
                         new Role {
                             RoleId = 1,
@@ -58,52 +81,40 @@ namespace LMS.App.Core.Data
                             RoleId = 2,
                             RoleName = "Coordinator",
                             RoleDescription = "Coordinator"
-                        }
-                    },
-                   Courses = new List<Course>{ new Course { CourseId = 1,CourseName="cn",Venue="indoor" } }  
-
-                },
-                    new User()
-                {
-                    UserEmailAddress = "trainer@trainer.com",
-                    FullName = "trainer trainer",
-                    UserName = "trainer",
-                    IsDeleted = false,
-                    ActivationCode = Guid.NewGuid(),
-                    Password = PasswordHelper.GetMd5Hash("123456"),
-                    CompanyId = 2,
-                    CountryId = 2,
-                    Roles = new List<Role> {
+                        },
                         new Role {
                             RoleId = 3,
                             RoleName = "Trainer",
                             RoleDescription = "Trainer"
                         }
-                    },
-                   Courses = new List<Course>{ new Course { CourseId = 2,CourseName="cn2",Venue="indoor2" } }
 
+                    },Qualifications = qualifications,
+                    CourseEnrollments = courseEnrolement
 
                 },
                     new User()
                 {
-                    UserEmailAddress = "trainee@trainer.com",
-                    FullName = "trainee trainee",
-                    UserName = "trainee",
-                    Designation = "trainee",
+                    CountryId = 1,
+                    CompanyId = 1,
+                    UserName = "admin",
+                    UserEmailAddress = "trainer@trainer.com",
+                    UserDetails =  new UserDetails{
+                        FullName = "trainer Name",
+                        Address ="addres",ContactNo="conta",
+                        EmergencyContactNo ="EmergencyContactNo",
+                        Designation ="Designaton",EmployeeId = "EMP001"
+                    },
                     IsDeleted = false,
                     ActivationCode = Guid.NewGuid(),
                     Password = PasswordHelper.GetMd5Hash("123456"),
-                    CompanyId = 2,
-                    CountryId = 2,
                     Roles = new List<Role> {
-                        new Role {
-                            RoleId = 4,
-                            RoleName = "trainee",
-                            RoleDescription = "trainee"
+                       new Role {
+                            RoleId = 3,
+                            RoleName = "Trainer",
+                            RoleDescription = "Trainer"
                         }
-                    },
-                   Courses = new List<Course>{ new Course { CourseId = 3,CourseName="cn3",Venue="indoor3" } }
-
+                    },Qualifications = qualifications,
+                    CourseEnrollments = courseEnrolement
 
                 }
                 };

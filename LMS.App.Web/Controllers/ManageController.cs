@@ -44,15 +44,17 @@ namespace LMS.App.Web.Controllers
         {
             var rolesUser = _roleRepo.GetRolesbyUserId(ID);
             var vm = _usersRepo.GetUserById(ID);
+            
             //vm.Rolelist = ListProvider.GetRoles(roles.RoleId);
             var viewmodel = new UserViewModel()
             {
-                UserName = vm.UserName,FullName = vm.FullName,
+                UserName = vm.UserName,
+                FullName = vm.UserDetails.FullName,
                 EmailAddress = vm.UserEmailAddress,
                 UserId = vm.UserId,
                 Inactive = vm.IsDeleted,
-                Role = rolesUser!=null?rolesUser.RoleName:"N/A",
-                Rolelist = rolesUser!=null ? ListProvider.GetRoles(rolesUser.RoleId) : ListProvider.Roles
+                Role = rolesUser != null ? rolesUser.RoleName : "N/A",
+                Rolelist = rolesUser != null ? ListProvider.GetRoles(rolesUser.RoleId) : ListProvider.Roles
             };
             return Json(new { usermodel = viewmodel }, JsonRequestBehavior.AllowGet);
             // return null;
@@ -134,19 +136,24 @@ namespace LMS.App.Web.Controllers
         [HttpPost]
         public ActionResult AddUser(UserViewModel vm)
         {
-            var user = new User()
-            {
-                // UserId = vm.UserId,
-                UserEmailAddress = vm.EmailAddress,
-                UserName = vm.UserName, IsDeleted = true,FullName =vm.FullName,
-                Password = PasswordHelper.GetMd5Hash(vm.Password)
 
-            };
-            var userRole = new UserRole()
-            {
-                UserId = vm.UserId,
-                RoleId = Convert.ToInt16(vm.Role)
-            };
+            var user = AutoMapper.Mapper.Map<User>(vm);
+
+            //var user = new User()
+            //{
+            //    // UserId = vm.UserId,
+            //    UserEmailAddress = vm.EmailAddress,
+            //    UserName = vm.UserName,
+            //    IsDeleted = true,
+            //    FullName = vm.FullName,
+            //    Password = PasswordHelper.GetMd5Hash(vm.Password)
+
+            //};
+            //var userRole = new UserRole()
+            //{
+            //    UserId = vm.UserId,
+            //    RoleId = Convert.ToInt16(vm.Role)
+            //};
 
             return Json(new { success = _usersRepo.AddUser(user) }, JsonRequestBehavior.AllowGet);
         }
@@ -158,8 +165,12 @@ namespace LMS.App.Web.Controllers
             {
                 UserId = vm.UserId,
                 UserEmailAddress = vm.EmailAddress,
-                UserName = vm.UserName,ActivationCode = Guid.NewGuid(),FullName = vm.FullName,
-                Password= PasswordHelper.GetMd5Hash(vm.Password),IsDeleted = vm.Inactive
+                UserName = vm.UserName,
+                ActivationCode = Guid.NewGuid(),
+                
+                //UserDetails = vm.FullNameFullName,
+                Password = PasswordHelper.GetMd5Hash(vm.Password),
+                IsDeleted = vm.Inactive
 
             };
             var userRole = new UserRole()
@@ -175,11 +186,11 @@ namespace LMS.App.Web.Controllers
         [Authorize(Roles = "Admin")]
         public JsonResult UserList()
         {
-            var vm = _usersRepo.GetUsers().Where(x=>!x.IsDeleted).Select(b => new UserViewModel
+            var vm = _usersRepo.GetUsers().Where(x => !x.IsDeleted).Select(b => new UserViewModel
             {
                 UserId = b.UserId,
                 UserName = b.UserName,
-                FullName = b.FullName,
+                FullName = b.UserDetails.FullName,
                 Inactive = b.IsDeleted,
                 EmailAddress = b.UserEmailAddress,
                 Role = b.Roles.Select(x => x.RoleName).FirstOrDefault()// etc
@@ -194,9 +205,9 @@ namespace LMS.App.Web.Controllers
             {
                 UserId = b.UserId,
                 UserName = b.UserName,
-                FullName =b.FullName,
+                FullName = b.UserDetails.FullName,
                 EmailAddress = b.UserEmailAddress,
-                Inactive =b.IsDeleted,
+                Inactive = b.IsDeleted,
                 Role = b.Roles.Select(x => x.RoleName).FirstOrDefault()// etc
 
             }).ToList();

@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\UserType.cs" />
+    <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\PasswordHelper.cs" />
     <Compile Include="Helpers\SecurityHelper.cs" />
     <Compile Include="Startup.cs" />

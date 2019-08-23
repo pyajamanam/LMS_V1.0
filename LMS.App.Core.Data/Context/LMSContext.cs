@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Linq;
 using LMS.Ap.Core.Data.Configuration;
+using LMS.App.Core.Data.Configuration;
 using LMS.App.Core.Data.Entities;
 using SchoolManagementSystem.Data.Configuration;
 
@@ -37,6 +38,11 @@ namespace LMS.App.Core.Data.Contexts
             modelBuilder.Configurations.Add(new UserConfiguration());
             modelBuilder.Configurations.Add(new RoleConfiguration());
             modelBuilder.Configurations.Add(new CompanyConfiguration());
+            modelBuilder.Configurations.Add(new CourseEnrollmentConfiguration());
+            modelBuilder.Configurations.Add(new CourseConfiguration());
+            modelBuilder.Configurations.Add(new QualificationConfiguration());
+            //modelBuilder.Configurations.Add(new UserDetailsConfiguration());
+            
 
         }
         public LMSContext() : base("LMS_DemoEntities")
@@ -50,7 +56,8 @@ namespace LMS.App.Core.Data.Contexts
         public DbSet<Country> Countries { get; set; }
 
         public DbSet<Course> Course { get; set; }
-
+        public DbSet<CourseEnrollment> CourseEnrollments { get; set; }
+        
 
         public void AddUser(User user)
         {

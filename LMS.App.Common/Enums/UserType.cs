@@ -12,4 +12,20 @@ namespace LMS.App.Common.Enums
         Admin = 1,
         User = 2
     }
+    public enum ColorCode
+    {
+        Blue = 1,
+        Green = 2,
+        Aqua = 3,
+        Magenta=4,
+        Black= 5
+    }
+    public enum FontColors
+    {
+        Blue = 1,
+        Green = 2,
+        Aqua = 3,
+        Magenta = 4,
+        Black= 5
+    }
 }

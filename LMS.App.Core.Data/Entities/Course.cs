@@ -9,9 +9,11 @@ namespace LMS.App.Core.Data.Entities
     public class Course
     {
         public int CourseId { get; set; }
+        public string ReferenceId { get; set; }
         public string CourseName { get; set; }
         public string Venue { get; set; }
-        public virtual ICollection<User> Users { get; set; }
+        //public virtual ICollection<CourseEnrollment> CourseEnrollments { get; set; }
+        public virtual Qualification Qualification { get; set; }
 
     }
 }

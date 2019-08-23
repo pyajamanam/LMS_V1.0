@@ -15,7 +15,8 @@ namespace LMS.App.Web.App_Start.Mappings
         {
             CreateMap<UserViewModel, User>()
                 .ForMember(src => src.Roles, opt => opt.Ignore())
-                .ForMember(src => src.CompanyId, opt => opt.MapFrom(dest => dest.Country));
+                .ForMember(src => src.CompanyId, opt => opt.MapFrom(dest => dest.Company))
+                .ForMember(src => src.CountryId, opt => opt.MapFrom(dest => dest.Country));
 
             CreateMap<RegisterModel, User>()
                 .ForMember(src => src.CompanyId, opt => opt.MapFrom(dest => dest.CompanyId))

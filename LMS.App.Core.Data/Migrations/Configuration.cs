@@ -61,44 +61,13 @@ namespace LMS.App.Core.Data.Migrations
             {
                 context.Roles.Add(item);
             }
-            var user = new User()
-            {
-                UserEmailAddress = "admin@dmin.com",
-                FullName = "admin Name",
-                UserName = "admin",
-                IsDeleted = true,
-                ActivationCode = Guid.NewGuid(),
-                Password = PasswordHelper.GetMd5Hash("123456"),
-                CompanyId = 1,
-                UserId = 1
-            };
-            var user2 = new User()
-            {
-                UserEmailAddress = "trainer@trainer.com",
-                FullName = "trainer trainer",
-                UserName = "trainer",
-                IsDeleted = true,
-                ActivationCode = Guid.NewGuid(),
-                Password = PasswordHelper.GetMd5Hash("123456"),
-                CompanyId = 1,
-                UserId = 2
-            };
-            var userrole = new UserRole()
-            {
-                UserId = 1,
-                RoleId = 1  // admin
-            };
-            var userrole2 = new UserRole()
-            {
-                UserId = 2,
-                RoleId = 2 //trainer
-            };
+           
             //base tables 
             context.Countries.AddRange(countries);
             context.Companies.AddRange(companies);
             context.Roles.AddRange(roles);
             //base tables end
-            context.Users.Add(user);
+            //context.Users.Add(user);
             context.SaveChanges();
 
             //Database.SetInitializer(new LMSInitializer());

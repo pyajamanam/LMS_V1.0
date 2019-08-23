@@ -3,14 +3,15 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace SchoolManagementSystem.Data.Configuration
 {
-    public class CompanyConfiguration : EntityTypeConfiguration<Company>
+    public class CourseConfiguration : EntityTypeConfiguration<Course>
     {
-        public CompanyConfiguration()
+        public CourseConfiguration()
         {
-            Property(c => c.Address).IsOptional();
-            Property(c => c.CompanyName).IsRequired();
-            Property(c => c.CompanyId).IsRequired();
-            Property(c => c.Remark).IsOptional();
+            Property(c => c.CourseId).IsRequired();
+            Property(c => c.CourseName).IsRequired();
+            this.HasKey(c => c.CourseId);
+            Property(c => c.Venue).IsOptional();
+            Property(p => p.CourseId).HasColumnName("CourseEnrolmentId").HasColumnType("int").IsRequired();
 
         }
     }

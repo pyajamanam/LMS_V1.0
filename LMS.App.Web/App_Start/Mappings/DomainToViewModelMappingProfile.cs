@@ -18,11 +18,17 @@ namespace LMS.App.Web.App_Start.Mappings
 
             CreateMap<User, UserViewModel>()
               .ForMember(dest => dest.Country,
-              opt => opt.MapFrom(src => src.Company.CompanyName));
+              opt => opt.MapFrom(src => src.Company.CompanyName))
+              .ForMember(dest => dest.Company, opt => opt.MapFrom(src => src.Company.CompanyName));
+
             CreateMap<Company, CompanyViewModel>()
                 .ForMember(dest => dest.CompanyName,
                 opt => opt.MapFrom(src => src.CompanyName));
+
+            CreateMap<Country, CountryViewModel>()
+                .ForMember(dest => dest.CountryName,
+                opt => opt.MapFrom(src => src.CountryName));
         }
     }
 
-        }
+}

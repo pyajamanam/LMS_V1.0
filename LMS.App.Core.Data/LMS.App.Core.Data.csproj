@@ -53,13 +53,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\QualificationConfiguration.cs" />
     <Compile Include="Configuration\CourseConfiguration.cs" />
+    <Compile Include="Configuration\CompanyConfiguration.cs" />
+    <Compile Include="Configuration\CourseEnrollmentConfiguration.cs" />
     <Compile Include="Configuration\RoleConfiguration.cs" />
     <Compile Include="Configuration\UserConfiguration.cs" />
     <Compile Include="Context\LMSContext.cs" />
     <Compile Include="Entities\Country.cs" />
     <Compile Include="Entities\Company.cs" />
     <Compile Include="Entities\Course.cs" />
+    <Compile Include="Entities\CourseEnrollment.cs" />
+    <Compile Include="Entities\Qualification.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserRole.cs" />

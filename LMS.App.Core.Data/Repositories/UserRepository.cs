@@ -96,36 +96,36 @@ namespace LMS.App.Core.Data.Repositories
 
         //this is from Admin Profile edit
         public int UpdateUser(User user, UserRole userRole)
-    {
-        var dbuser = _db.Users.Where(u => u.UserId == user.UserId).FirstOrDefault();
-        if (dbuser != null)
         {
-            dbuser.UserName = user.UserName;
-            dbuser.UserEmailAddress = user.UserEmailAddress;
-            dbuser.IsDeleted = user.IsDeleted;
-            dbuser.Password = user.Password;
-            dbuser.FullName = user.FullName;
+            var dbuser = _db.Users.Where(u => u.UserId == user.UserId).FirstOrDefault();
+            if (dbuser != null)
+            {
+                dbuser.UserName = user.UserName;
+                dbuser.UserEmailAddress = user.UserEmailAddress;
+                dbuser.IsDeleted = user.IsDeleted;
+                dbuser.Password = user.Password;
+                dbuser.UserDetails.FullName = user.UserDetails.FullName;
+                dbuser.UserDetails.Designation = user.UserDetails.Designation;
+            }
+            else
+            {
+                var newuser = _db.Users.Add(user);
+                userRole.UserId = newuser.UserId;
+
+            }
+
+            //var roleEntry = _db.UserRoles.Where(u => u.UserId == user.UserId).FirstOrDefault();
+            //if (roleEntry != null)
+            //{
+            //    _db.UserRoles.Remove(roleEntry);
+            //}
+            //_db.UserRoles.Add(userRole);
+
+            return _db.SaveChanges();
 
         }
-        else
-        {
-            var newuser = _db.Users.Add(user);
-            userRole.UserId = newuser.UserId;
 
-        }
-
-        //var roleEntry = _db.UserRoles.Where(u => u.UserId == user.UserId).FirstOrDefault();
-        //if (roleEntry != null)
-        //{
-        //    _db.UserRoles.Remove(roleEntry);
-        //}
-        //_db.UserRoles.Add(userRole);
-
-        return _db.SaveChanges();
 
     }
-
-
-}
 }
 

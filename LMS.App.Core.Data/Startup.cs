@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-[assembly: PreApplicationStartMethod(typeof(LMS.App.Core.Data.Startup), "Start")]
+//[assembly: PreApplicationStartMethod(typeof(LMS.App.Core.Data.Startup), "Start")]
 
 namespace LMS.App.Core.Data
 {
