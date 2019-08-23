@@ -1,9 +1,0 @@
-D:\FreelanceProjects\MvcApplication1\MvcApplication1\LMS.Infrastructure\bin\Debug\netstandard2.0\LMS.Infrastructure.deps.json
-D:\FreelanceProjects\MvcApplication1\MvcApplication1\LMS.Infrastructure\bin\Debug\netstandard2.0\LMS.Infrastructure.dll
-D:\FreelanceProjects\MvcApplication1\MvcApplication1\LMS.Infrastructure\bin\Debug\netstandard2.0\LMS.Infrastructure.pdb
-D:\FreelanceProjects\MvcApplication1\MvcApplication1\LMS.Infrastructure\obj\Debug\netstandard2.0\LMS.Infrastructure.csprojAssemblyReference.cache
-D:\FreelanceProjects\MvcApplication1\MvcApplication1\LMS.Infrastructure\obj\Debug\netstandard2.0\LMS.Infrastructure.csproj.CoreCompileInputs.cache
-D:\FreelanceProjects\MvcApplication1\MvcApplication1\LMS.Infrastructure\obj\Debug\netstandard2.0\LMS.Infrastructure.AssemblyInfoInputs.cache
-D:\FreelanceProjects\MvcApplication1\MvcApplication1\LMS.Infrastructure\obj\Debug\netstandard2.0\LMS.Infrastructure.AssemblyInfo.cs
-D:\FreelanceProjects\MvcApplication1\MvcApplication1\LMS.Infrastructure\obj\Debug\netstandard2.0\LMS.Infrastructure.dll
-D:\FreelanceProjects\MvcApplication1\MvcApplication1\LMS.Infrastructure\obj\Debug\netstandard2.0\LMS.Infrastructure.pdb
