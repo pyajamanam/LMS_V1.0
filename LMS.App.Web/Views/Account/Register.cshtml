@@ -19,15 +19,21 @@
             <form>
                 <div class="form-group">
                     <div class="form-row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-label-group">
                                 @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", placeholder = "Full Name", required = "required", autofocus = "autofocus" })
                                 @Html.LabelFor(m => m.FullName)
                             </div>
                             @Html.ValidationMessageFor(m => m.FullName)
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-label-group">
+                                @Html.DropDownListFor(model => model.CompanyId, Model.Companies, new { @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.CompanyId)
 
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-label-group">
                                 @Html.TextBoxFor(m => m.Designation, new { @class = "form-control", placeholder = "Designation", required = "required", autofocus = "autofocus" })
                                 @Html.LabelFor(m => m.Designation)
@@ -35,27 +41,27 @@
                             @Html.ValidationMessageFor(m => m.Designation)
 
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-label-group">
-                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Full Name", required = "required", autofocus = "autofocus" })
+                                @Html.TextBoxFor(m => m.EmployeeId, new { @class = "form-control", placeholder = "EmployeeId", required = "required", autofocus = "autofocus" })
+                                @Html.LabelFor(m => m.EmployeeId)
+                            </div>
+                            @Html.ValidationMessageFor(m => m.EmployeeId)
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-label-group">
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Preferred UserId", required = "required", autofocus = "autofocus" })
                                 @Html.LabelFor(m => m.UserName)
                             </div>
                             @Html.ValidationMessageFor(m => m.UserName)
 
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="form-row">
-                        <div class="col-md-4">
-                            <div class="form-label-group">
-                                @Html.DropDownListFor(model => model.CompanyId, Model.Companies, new { @class = "form-control" })
-
-                            </div>
-                            @Html.ValidationMessageFor(m => m.CompanyId)
-
-                        </div>
                         <div class="col-md-4">
                             <div class="form-label-group">
                                 <div class="form-label-group">

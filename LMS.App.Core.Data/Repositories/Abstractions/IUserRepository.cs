@@ -10,11 +10,12 @@ namespace LMS.App.Core.Data.Repositories
 
         User GetUserById(int id);
 
-//        User GetUserByEmail(string email);
+        int UpdateGoals(Qualification obj);
 
-       // List<User> GetUserByEmail(string emailToMatch, int pageIndex, int pageSize, out int totalRecords);
+        int UpdateUser(User user);
+        // List<User> GetUserByEmail(string emailToMatch, int pageIndex, int pageSize, out int totalRecords);
 
-      //  string GetUserNameByEmail(string emailToMatch);
+        //  string GetUserNameByEmail(string emailToMatch);
 
         //List<User> GetUsersByUsername(string usernameToMatch, int pageIndex, int pageSize, out int totalRecords);
 

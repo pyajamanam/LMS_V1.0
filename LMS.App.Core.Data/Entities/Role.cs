@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using LMS.App.Core.Data.Entities.Base;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LMS.App.Core.Data.Entities
 {
-    [Table("Roles")]
-    public class Role
+    public class Role : EntityBase
     {
         [Key]
         public short RoleId { get; set; }

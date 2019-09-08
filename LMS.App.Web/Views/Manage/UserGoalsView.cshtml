@@ -1,0 +1,98 @@
+﻿@model LMS.App.Web.Models.UserGoalsViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<head>
+    <script src="~/js/UserGoals.js"></script>
+    <style>
+
+        .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+            /* border-bottom: 1px solid #dee2e6; */
+            /* background-color: darkgreen; */
+            color: #555;
+            cursor: default;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-bottom-color: transparent;
+        }
+
+        .nav-tabs > li > a {
+            padding: 10px 15px;
+            margin-right: 2px;
+            line-height: 1.42857143;
+            /*border-radius: 4px 4px 0 0;*/
+            tab-size: 10%;
+            /* font-size: medium; */
+            background-color: #fff;
+        }
+
+        .nav-tabs {
+            /* border-bottom: 1px solid #dee2e6; */
+        }
+
+        a {
+            color: #337ab7;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: none;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#allusers">All Users</a></li>
+            <li><a href="#activeusers">Users List</a></li>
+            <li><a href="#inactiveusers">Iactive Users</a></li>
+
+        </ul>
+        <div>
+            @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New User</button>*@<br /><br />
+            @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New User</button>*@<br /><br />
+            @Html.ActionLink("CreateGoal", "CreateGoal",new { @class="btn btn-primary"})
+        </div>
+        @Html.Partial("_UserGoalsPartial", Model.Qualificationslist)
+    </div>
+    @*<script>
+        $(document).ready(function () {
+            loadData();
+            $(".nav-tabs a").click(function () {
+                $(this).tab('show');
+            });
+            $('.nav-tabs a').on('shown.bs.tab', function (event) {
+                debugger;
+                // alert($(this).attr('href'));
+                var tab = $(this).attr('href');
+                switch (tab) {
+                    case "#activeusers":
+                        loadData();
+                        event.preventDefault();
+                        break;
+                    case "#inactiveusers":
+                        loadInactiveUsers();
+                        event.preventDefault();
+                        break;
+                    default:
+                        event.preventDefault();
+                        break;
+                }
+                // loadData();
+                var x = $(event.target).text();         // active tab
+                var y = $(event.relatedTarget).text();  // previous tab
+                $(".act span").text(x);
+                $(".prev span").text(y);
+            });
+        });
+    </script>*@
+</body>
+
+@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">*@
+
+
+
+
+@*@Html.Partial("_UserGoalsPartial", Model.Qualificationslist)*@

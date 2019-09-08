@@ -53,6 +53,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\CountryConfiguration.cs" />
+    <Compile Include="Configuration\QualificationUserConfiguration.cs" />
+    <Compile Include="Configuration\CourseScheduleConfiguration.cs" />
+    <Compile Include="Configuration\CourseQualificationConfiguration.cs" />
     <Compile Include="Configuration\QualificationConfiguration.cs" />
     <Compile Include="Configuration\CourseConfiguration.cs" />
     <Compile Include="Configuration\CompanyConfiguration.cs" />
@@ -60,9 +64,13 @@
     <Compile Include="Configuration\RoleConfiguration.cs" />
     <Compile Include="Configuration\UserConfiguration.cs" />
     <Compile Include="Context\LMSContext.cs" />
+    <Compile Include="Entities\Base\EntityBase.cs" />
     <Compile Include="Entities\Country.cs" />
     <Compile Include="Entities\Company.cs" />
+    <Compile Include="Entities\QualificationUser.cs" />
+    <Compile Include="Entities\CourseSchedule.cs" />
     <Compile Include="Entities\Course.cs" />
+    <Compile Include="Entities\CourseQualification.cs" />
     <Compile Include="Entities\CourseEnrollment.cs" />
     <Compile Include="Entities\Qualification.cs" />
     <Compile Include="Entities\Role.cs" />
@@ -71,12 +79,15 @@
     <Compile Include="LMSInitializer.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Abstractions\ICourseRepository.cs" />
+    <Compile Include="Repositories\Abstractions\IQualificationsRepository.cs" />
+    <Compile Include="Repositories\CourseRepository.cs" />
     <Compile Include="Repositories\CountryRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
-    <Compile Include="Repositories\ICountryRepository.cs" />
-    <Compile Include="Repositories\ICompanyRepository.cs" />
-    <Compile Include="Repositories\IRoleRepository.cs" />
-    <Compile Include="Repositories\IUserRepository.cs" />
+    <Compile Include="Repositories\Abstractions\ICountryRepository.cs" />
+    <Compile Include="Repositories\Abstractions\ICompanyRepository.cs" />
+    <Compile Include="Repositories\Abstractions\IRoleRepository.cs" />
+    <Compile Include="Repositories\Abstractions\IUserRepository.cs" />
     <Compile Include="Repositories\CompanyRepository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />

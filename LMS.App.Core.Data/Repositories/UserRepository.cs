@@ -7,6 +7,7 @@ using LMS.App.Core.Data.Repositories;
 using LMS.App.Common.Enums;
 using System.Data.Entity;
 using System.Web.Security;
+using LMS.App.Common.Helpers;
 
 namespace LMS.App.Core.Data.Repositories
 {
@@ -14,8 +15,25 @@ namespace LMS.App.Core.Data.Repositories
     {
         private readonly LMSContext _db;
 
-        private readonly bool _disposed = false;
+        private bool disposed = false;
 
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    _db.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
         public UserRepository()
         {
             _db = new LMSContext();
@@ -23,32 +41,81 @@ namespace LMS.App.Core.Data.Repositories
 
         public int AddUser(User user, short roleId)
         {
+            var user3 = new User()
+            {
+                CountryId = 2,
+                CompanyId = 2,
+                UserName = "trainee",
+                UserEmailAddress = "trainee@trainee.com",
+                UserDetails = new UserDetails
+                {
+                    FullName = "trainee Name",
+                    Address = "addres",
+                    ContactNo = "conta",
+                    EmergencyContactNo = "EmergencyContactNo",
+                    Designation = "Designaton",
+                    EmployeeId = "EMP001"
+                },
+                IsDeleted = false,
+                ActivationCode = Guid.NewGuid(),
+                Password = PasswordHelper.GetMd5Hash("123456"),
+                Roles = new List<Role> {
+                       new Role {
+                            RoleId = 4,
+                            RoleName = "Trainee",
+                            RoleDescription = "Trainer"
+                        }
+                    }
+            };
             //if (user.UserId > 0)
             //{
             //    UpdateUser(user);
             //}
-            //var newuser = _db.Users.Add(user);
+            var newuser = _db.Entry(user3).State = EntityState.Added;
             //_db.UserRoles.Add(new UserRole { UserId = newuser.UserId, RoleId = roleId });
             return _db.SaveChanges();
         }
 
         public int AddUser(User user)
         {
+            var user3 = new User()
+            {
+                CountryId = 2,
+                CompanyId = 2,
+                UserName = "trainee2",
+                UserEmailAddress = "trainee2@trainee.com",
+                UserDetails = new UserDetails
+                {
+                    FullName = "trainee Name",
+                    Address = "addres",
+                    ContactNo = "conta",
+                    EmergencyContactNo = "EmergencyContactNo",
+                    Designation = "Designaton",
+                    EmployeeId = "EMP001"
+                },
+                IsDeleted = false,
+                ActivationCode = Guid.NewGuid(),
+                Password = PasswordHelper.GetMd5Hash("123456")
+               
+            };
+            user3.Roles.Add(
+                       new Role
+                       {
+                           RoleId = 4,
+                           RoleName = "Trainee",
+                           RoleDescription = "Trainee"
+                       });
+                    
             //if (user.UserId > 0)
             //{
             //    UpdateUser(user);
             //}
-            //var newuser = _db.Users.Add(user);
-            //_db.UserRoles.Add(new UserRole { UserId = newuser.UserId, RoleId = Convert.ToInt16(UserType.Trainee) });//default user when they register from website
-            return _db.SaveChanges();
+            var newuser = _db.Entry(user3).State = EntityState.Added;
+           return _db.SaveChanges();
 
         }
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
+      
         public User GetUser(string userName)
         {
             var user = _db.Users.SingleOrDefault(u => u.UserName == userName);
@@ -71,6 +138,14 @@ namespace LMS.App.Core.Data.Repositories
             //totalRecords = 10;
             return _db.Users.Where(x => x.UserId > 1).ToList();
         }
+
+        public int UpdateGoals(Qualification obj)
+        {
+           
+            _db.Entry(obj).State = EntityState.Modified;
+            return _db.SaveChanges();
+        }
+
 
         public int UpdateUser(User user)
         {
@@ -124,7 +199,7 @@ namespace LMS.App.Core.Data.Repositories
             return _db.SaveChanges();
 
         }
-
+      
 
     }
 }

@@ -26,7 +26,8 @@ namespace LMS.App.Core.Data.Repositories
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
         private bool disposed = false;
         protected virtual void Dispose(bool disposing)

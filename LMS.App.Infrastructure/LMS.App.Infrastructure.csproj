@@ -48,7 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="CustomMembershipUser.cs" />
     <Compile Include="Interfaces\IMembershipService.cs" />
     <Compile Include="MailHelper\MailHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

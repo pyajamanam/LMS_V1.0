@@ -1,0 +1,27 @@
+﻿@model LMS.App.Web.Models.UserQualificationsView
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+    {
+@Html.TextBoxFor(x => x.FullName)
+<select class="form-control select2" style="width: 100%;" name="CategoryId">
+
+    @foreach (var item in Model.QualificaitonList)
+    {
+        if (item.Value == Model.Qid.ToString())
+        {
+            <option value="@item.Value" selected>@item.Text</option>
+        }
+        else
+        {
+            <option value="@item.Value">@item.Text</option>
+        }
+    }
+</select>
+@Html.DropDownListFor(x => x.Qid, Model.QualificaitonList)
+<button type="submit" value="Save">ytest</button>
+}
+

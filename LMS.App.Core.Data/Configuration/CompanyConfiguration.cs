@@ -11,6 +11,8 @@ namespace SchoolManagementSystem.Data.Configuration
             Property(c => c.CompanyName).IsRequired();
             Property(c => c.CompanyId).IsRequired();
             Property(c => c.Remark).IsOptional();
+           // Property(c => c.CreatedDate).HasColumnType("datetime2");
+            //Property(c => c.UpdatedDate).HasColumnType("datetime2");
 
         }
     }

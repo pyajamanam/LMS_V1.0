@@ -23,6 +23,9 @@ namespace LMS.App.Web.App_Start.Mappings
                 .ForMember(src => src.CountryId, opt => opt.MapFrom(dest => dest.CountryId))
                .ForMember(src => src.Company, opt => opt.Ignore())
                .ForMember(src => src.Country, opt => opt.Ignore());
+            CreateMap<UserGoalsViewModel, User>()
+                .ForMember(src => src.Qualifications, opt => opt.MapFrom(dest => dest.Qualificationslist));
+                
 
         }
     }

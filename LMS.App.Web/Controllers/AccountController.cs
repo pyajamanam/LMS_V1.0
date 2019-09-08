@@ -113,13 +113,14 @@ namespace LMS.App.Web.Controllers
             if (ModelState.IsValid)
             {
                 // Attempt to register the user
-                MembershipCreateStatus createStatus = MembershipService.CreateUser(model.UserName, model.Password, model.Email);
-
-                if (createStatus == MembershipCreateStatus.Success)
+             //   MembershipCreateStatus createStatus = MembershipService.CreateUser(model.UserName, model.Password, model.Email);
+               var user =  AutoMapper.Mapper.Map<User>(model);
+                var i = _userRepo.AddUser(user);
+                if (i>0)
                 {
                     return RedirectToAction("LogOn", "Account");
                 }
-                ModelState.AddModelError("", ErrorCodeToString(createStatus));
+                ModelState.AddModelError("", "createstatus");
             }
 
             // If we got this far, something failed, redisplay form
@@ -202,6 +203,14 @@ namespace LMS.App.Web.Controllers
             return user;
         }
 
+        protected override void Dispose(bool disposing)
+        {
+
+            _userRepo.Dispose();
+            _countryRepo.Dispose();
+            _companyRepo.Dispose();
+            base.Dispose(disposing);
+        }
         #region Status Codes
         private static string ErrorCodeToString(MembershipCreateStatus createStatus)
         {

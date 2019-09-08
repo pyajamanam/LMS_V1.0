@@ -38,12 +38,13 @@ namespace LMS.App.Core.Data.Contexts
             modelBuilder.Configurations.Add(new UserConfiguration());
             modelBuilder.Configurations.Add(new RoleConfiguration());
             modelBuilder.Configurations.Add(new CompanyConfiguration());
-            modelBuilder.Configurations.Add(new CourseEnrollmentConfiguration());
+            modelBuilder.Configurations.Add(new CountryConfiguration());
             modelBuilder.Configurations.Add(new CourseConfiguration());
             modelBuilder.Configurations.Add(new QualificationConfiguration());
-            //modelBuilder.Configurations.Add(new UserDetailsConfiguration());
-            
+            //modelBuilder.Configurations.Add(new CourseQualificationConfiguration());
+            modelBuilder.Configurations.Add(new CourseScheduleConfiguration());
 
+            
         }
         public LMSContext() : base("LMS_DemoEntities")
         {
@@ -57,9 +58,12 @@ namespace LMS.App.Core.Data.Contexts
 
         public DbSet<Course> Courses { get; set; }
         public DbSet<CourseEnrollment> CourseEnrollments { get; set; }
+
+        //public DbSet<QualificationUser> QualificationUsers { get; set; }
+
         public DbSet<Qualification> Qualifications { get; set; }
-
-
+        //public DbSet<CourseQualification> CourseQualification { get; set; }
+        
         public void AddUser(User user)
         {
             Users.Add(user);

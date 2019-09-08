@@ -17,12 +17,14 @@ namespace LMS.App.Core.Data
     public class LMSInitializer : DropCreateDatabaseIfModelChanges<LMSContext>
     {
         protected override void Seed(LMSContext context)
-        {
+         {
             try
             {
                 var countries = new List<Country>();
                 var companies = new List<Company>();
-                for (int i = 0; i < 10; i++)
+                var courses = new List<Course>();
+                var qualifications = new List<Qualification>();
+                for (int i = 1; i < 10; i++)
                 {
                     countries.Add(new Country
                     {
@@ -34,52 +36,35 @@ namespace LMS.App.Core.Data
                         Address = "address" + i,
                         CompanyName = "CompanyName" + i,
                         Remark = "Remarks"
+                        
+                    });
+                    courses.Add(new Course
+                    {
+                        CourseName = "Blue course" + i,
+                        Duration = "2",
+                        CourseCode = "BC" + i,
+                        Status = true,
+                        PreRequsiteCourseId = i
+                    });
+                    qualifications.Add(new Qualification
+                    {
+                        QualificationId = i,
+                        QualificationCode = "BC-110",
+                        QualificationName = "Blue Code course",
+                        FontColorCardId = 1,
+                        ColorId = 1,
+                        Courses = new List<Course> { new Course
+                    {
+                        CourseName = "Blue course" + i,
+                        Duration = "2",
+                        CourseCode = "BC" + i,
+                        Status = true,
+                        PreRequsiteCourseId = i
+                    }
+                        }
                     });
                 }
-                var courses = new List<Course> { new Course { CourseId = 1, CourseName = "Blue course", Venue = "cLASROOM" },
-                                                new Course { CourseId = 2, CourseName = "saftey course", Venue = "cLASROOM" }
-                };
-
-                var courseEnrolement = new List<CourseEnrollment>
-                {
-                    new CourseEnrollment {
-                        UserId = 1,
-                        TrainerId = 1,
-                        CourseId =1
-                    },
-                     new CourseEnrollment {
-                        UserId = 2,
-                        TrainerId = 1,
-                        CourseId =1
-                    }
-                };
-                var qualifications = new List<Qualification> {
-                    new Qualification {
-                        QualificationCode ="BC-110",
-                        Courses = courses,
-                        QualificationName = "Blue Code course",
-                        FortColorCardId = 1,
-                        ColorId =1,
-                        //ColorId = 1,
-                        //FortColorCardId =1,
-                } };
-                var users = new List<User>{
-                    new User()
-                {
-                    CountryId = 1,
-                    CompanyId = 1,
-                    UserName = "admin",
-                    UserEmailAddress = "admin@dmin.com",
-                    UserDetails =  new UserDetails{
-                        FullName = "admin Name",
-                        Address ="addres",ContactNo="conta",
-                        EmergencyContactNo ="EmergencyContactNo",
-                        Designation ="Designaton",EmployeeId = "EMP001",
-                    },
-                    IsDeleted = false,
-                    ActivationCode = Guid.NewGuid(),
-                    Password = PasswordHelper.GetMd5Hash("123456"),
-                    Roles = new List<Role> {
+                var roles = new List<Role> {
                         new Role {
                             RoleId = 1,
                             RoleName = "Admin",
@@ -95,45 +80,90 @@ namespace LMS.App.Core.Data
                             RoleName = "Trainer",
                             RoleDescription = "Trainer"
                         }
-
-                    },Qualifications = qualifications,
-                    CourseEnrollments = courseEnrolement
-
-                },
-                    new User()
+                    };
+                //base tables 
+                context.Countries.AddRange(countries);
+                context.Companies.AddRange(companies);
+                context.Roles.AddRange(roles);
+                context.Courses.AddRange(courses);
+                context.Qualifications.AddRange(qualifications);
+                context.SaveChanges();
+                //base tables end
+                var user1 = new User()
                 {
                     CountryId = 1,
                     CompanyId = 1,
+                    UserName = "admin",
+                    UserEmailAddress = "admin@dmin.com",
+                    UserDetails = new UserDetails
+                    {
+                        FullName = "admin Name",
+                        Address = "addres",
+                        ContactNo = "conta",
+                        EmergencyContactNo = "EmergencyContactNo",
+                        Designation = "Designaton",
+                        EmployeeId = "EMP001",
+                    },
+                    IsDeleted = false,
+                    ActivationCode = Guid.NewGuid(),
+                    Password = PasswordHelper.GetMd5Hash("123456"),
+
+                };
+                var user2 = new User()
+                {
+                    CountryId = 1,
+                    CompanyId = 2,
                     UserName = "trainer",
                     UserEmailAddress = "trainer@trainer.com",
-                    UserDetails =  new UserDetails{
+                    UserDetails = new UserDetails
+                    {
                         FullName = "trainer Name",
-                        Address ="addres",ContactNo="conta",
-                        EmergencyContactNo ="EmergencyContactNo",
-                        Designation ="Designaton",EmployeeId = "EMP001"
+                        Address = "addres",
+                        ContactNo = "conta",
+                        EmergencyContactNo = "EmergencyContactNo",
+                        Designation = "Designaton",
+                        EmployeeId = "EMP001"
+                    },
+                    IsDeleted = false,
+                    ActivationCode = Guid.NewGuid(),
+                    Password = PasswordHelper.GetMd5Hash("123456"),
+
+                };
+                var user3 = new User()
+                {
+                    CountryId = 2,
+                    CompanyId = 2,
+                    UserName = "trainee",
+                    UserEmailAddress = "trainee@trainee.com",
+                    UserDetails = new UserDetails
+                    {
+                        FullName = "trainee Name",
+                        Address = "addres",
+                        ContactNo = "conta",
+                        EmergencyContactNo = "EmergencyContactNo",
+                        Designation = "Designaton",
+                        EmployeeId = "EMP001"
                     },
                     IsDeleted = false,
                     ActivationCode = Guid.NewGuid(),
                     Password = PasswordHelper.GetMd5Hash("123456"),
                     Roles = new List<Role> {
                        new Role {
-                            RoleId = 3,
-                            RoleName = "Trainer",
+                            RoleId = 4,
+                            RoleName = "Trainee",
                             RoleDescription = "Trainer"
                         }
-                    },Qualifications = qualifications,
-                    CourseEnrollments = courseEnrolement
-
-                }
+                    }
                 };
-                //base tables 
-                context.Countries.AddRange(countries);
-                context.Companies.AddRange(companies);
-                context.Courses.AddRange(courses);
-                //base tables end
-                context.Users.AddRange(users);
-                context.Qualifications.AddRange(qualifications);
-                context.CourseEnrollments.AddRange(courseEnrolement);
+                user1.Roles = roles;
+                context.Users.Add(user1);
+                user2.Roles = new List<Role> { new Role { RoleId = 4, RoleDescription = "Trainee", RoleName = "Trainee" } };
+                context.Users.Add(user2);
+                context.SaveChanges();
+               // context.CourseQualification.Add(new CourseQualification() { CourseId = 1, QualificationId = 3 });
+                //Roles.AddUserToRole("admin", "Trainer");
+                user2.Qualifications = qualifications;
+                user3.Qualifications = qualifications;
                 context.SaveChanges();
             }
             catch (DbEntityValidationException ex)

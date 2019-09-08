@@ -96,68 +96,69 @@
         @if (User.Identity.IsAuthenticated)
         {
             <ul class="sidebar navbar-nav">
-                @if (User.IsInRole("admin"))
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-user-o" aria-hidden="true"></i>
+                        <span>My Profile</span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                        <i class="fa fa-user-o" aria-hidden="true">
+                        </i>
+                        @Html.ActionLink("Personal data", "GetProfile", new { controller = "Manage" }, new { @class = "dropdown-item" })
+
+                        <a class="dropdown-item" href="/Manage/UserGoals">My Goals</a>
+                        <a class="dropdown-item" href="/Course/Register">Registration</a>
+       
+                    </div>
+                </li>
+
+
+                @if (User.IsInRole("Admin") || User.IsInRole("Trainer"))
                 {
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.html">
-                            <i class="fas fa-fw fa-tachometer-alt"></i>
-                            <span>Dashboard</span>
-                        </a>
+                    <li class="nav-item">
+                        @Html.ActionLink("MyAdmin", "Admin", new { controller = "Home" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Library", "About", new { controller = "Home" }, new { @class = "fas fa-fw fa-folder nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Materials", "Index", new { controller = "Manage" }, new { @class = "fa fa-files-o nav-link" })
                     </li>
                 }
-                @if (User.IsInRole("admin"))
-                {
-                    <li class="nav-item">@Html.ActionLink("MyAdmin", "Admin", new { controller = "Home" }, new { @class = "nav-link" })</li>
-                }
-                <li class="nav-item">@Html.ActionLink("AboutTV", "About", new { controller = "Home" }, new { @class = "nav-link" })</li>
-                @if (User.IsInRole("Admin"))
-                {
-                    <li class="nav-item">@Html.ActionLink("Users Dashboard", "Index", new { controller = "Manage" }, new { @class = "nav-link" })</li>
-                }
 
-                @if (User.IsInRole("User"))
-                {
-                    <li class="nav-item">@Html.ActionLink("User", "AdminOrAuthor", new { controller = "Home" }, new { @class = "nav-link" })</li>
-                }
+              
                 @if (User.IsInRole("Trainee"))
                 {
                     <li class="nav-item">@Html.ActionLink("MyDashboard", "Index", new { controller = "Home" }, new { @class = "nav-link" })</li>
                 }
-               
+                @if (User.IsInRole("Admin"))
+                {
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-fw fa-folder"></i>
-                            <span>System Configuration</span>
+                            <i class="fa fa-cog" aria-hidden="true"></i>
+                            <span>Configuration Setting</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
                             <h6 class="dropdown-header">Configurations</h6>
                             @Html.ActionLink("Company Master", "GetCompany", new { controller = "Company" }, new { @class = "dropdown-item" })
-                            <a class="dropdown-item" href="register.html">Country Master</a>
-                            <a class="dropdown-item" href="forgot-password.html">Course Master</a>
-                            <div class="dropdown-divider"></div>
-                            <h6 class="dropdown-header">Other Pages:</h6>
-                            <a class="dropdown-item" href="404.html">404 Page</a>
-                            <a class="dropdown-item" href="blank.html">Blank Page</a>
+                            @Html.ActionLink("Course Master", "GetCourses", new { controller = "Course" }, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Qualification/Role Master", "GetQualifications", new { controller = "Qualification" }, new { @class = "dropdown-item" })
                         </div>
                     </li>
-                
 
-                @*<li class="nav-item">
-                        <a class="nav-link" href="charts.html">
-                            <i class="fas fa-fw fa-chart-area"></i>
-                            <span>Charts</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="tables.html">
-                            <i class="fas fa-fw fa-table"></i>
-                            <span>Tables</span>
-                        </a>
-                    </li>*@
+                }
+
             </ul>
         }
         <div id="content-wrapper">
             <div class="container-fluid">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="#">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item active">Overview</li>
+                </ol>
+
                 @RenderBody()
                 <!-- /.container-fluid -->
             </div>
@@ -205,12 +206,12 @@
     <!-- Bootstrap core JavaScript-->
     <script src="~/vendor/jquery/jquery.min.js"></script>
     <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-       <!-- Custom scripts for all pages-->
+    <!-- Custom scripts for all pages-->
     <script src="~/js/sb-admin.min.js"></script>
 
     <!-- Demo scripts for this page-->
     @*<script src="js/demo/datatables-demo.js"></script>
-    <script src="js/demo/chart-area-demo.js"></script>*@
+        <script src="js/demo/chart-area-demo.js"></script>*@
 </body>
 </html>
 

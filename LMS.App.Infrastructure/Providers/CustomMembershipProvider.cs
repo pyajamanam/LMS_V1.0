@@ -63,7 +63,6 @@ namespace LMS.App.Infrastructure.Providers
             {
                 var userObj = new User { UserName = username, Password = PasswordHelper.GetMd5Hash(password), UserEmailAddress = email,IsDeleted = true, };
                 _userRepository.AddUser(userObj);
-                _userRepository.Dispose();
                 status = MembershipCreateStatus.Success;
                 return GetUser(username, true);
             }

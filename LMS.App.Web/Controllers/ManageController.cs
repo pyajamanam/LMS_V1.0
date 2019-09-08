@@ -9,15 +9,18 @@ using LMS.App.Core.Data.Entities;
 using LMS.App.Core.Data.Repositories;
 using LMS.App.Web.Filters;
 using LMS.App.Web.Models;
+using AutoMapper;
+using System.Web.Security;
+using LMS.App.Web.Extensions;
 
 namespace LMS.App.Web.Controllers
 {
 
-    public class ManageController : Controller
+    [Authorize]public class ManageController : Controller
     {
         public readonly IUserRepository _usersRepo;
         public readonly IRoleRepository _roleRepo;
-
+        UnitOfWork uow = new UnitOfWork();
         public ManageController()
         {
             _roleRepo = new RoleRepository();
@@ -39,12 +42,65 @@ namespace LMS.App.Web.Controllers
         }
 
 
+        public ActionResult UserGoals()
+        {
+            var user = uow.UserRepository.Get(x=>x.UserName==User.Identity.Name).FirstOrDefault();
+            var qlist = Mapper.Map<List<QualificationView>>(user.Qualifications);
+            var ugm = Mapper.Map<UserGoalsViewModel>(user);
+            return View("UserGoalsView",ugm);
+        }
+       [HttpPost]
+        public ActionResult CreateGoal(UserQualificationsView model)
+        {
+            var user = uow.UserRepository.GetByID(1);
+           var qual =  uow.QualificationRepository.GetByID(model.Qid);
+            user.Qualifications.Add(qual);
+            uow.UserRepository.Update(user);
+            uow.Save();
+            var qlist = Mapper.Map<List<QualificationView>>(user.Qualifications);
+            var ugm = Mapper.Map<UserGoalsViewModel>(user);
+           return RedirectToAction("UserGoals","Manage");
+
+        }
+
+       [HttpGet] public ActionResult CreateGoal()
+        {
+            var uqm = new UserQualificationsView(); 
+            var list =  uow.QualificationRepository.Get().ToSelectListItems(c => c.QualificationName,c=>c.QualificationId.ToString());
+            uqm.QualificaitonList = list;
+            uqm.FullName = _usersRepo.GetUser(User.Identity.Name).UserDetails.FullName;
+            return PartialView("_UserGoalsCreateView", uqm);
+        }
+        public ActionResult QualificationMaster()
+        {
+            var user = _usersRepo.GetUser("trainer");
+            var qlist = Mapper.Map<List<QualificationView>>(user.Qualifications);
+            var ugm = Mapper.Map<UserGoalsViewModel>(user);
+            return View("QualificationMaster", ugm);
+        }
+        public ActionResult GetUserGoals()
+        {
+            var user = _usersRepo.GetUser("trainer");
+            var qlist = Mapper.Map<List<QualificationView>>(user.Qualifications);
+            var ugm = Mapper.Map<UserGoalsViewModel>(user);
+            //return Json(new { usergoals = ugm }, JsonRequestBehavior.AllowGet);
+            return PartialView("_UserGoalsPartial", ugm.Qualificationslist);
+        }
+        [HttpPost]
+        public ActionResult UpdateGoals(QualificationView qv)
+        {
+
+            var qualification = Mapper.Map<Qualification>(qv);
+
+            return Json(new { status = true }, JsonRequestBehavior.AllowGet);
+        }
+
 
         public JsonResult GetbyID(int ID)
         {
             var rolesUser = _roleRepo.GetRolesbyUserId(ID);
             var vm = _usersRepo.GetUserById(ID);
-            
+
             //vm.Rolelist = ListProvider.GetRoles(roles.RoleId);
             var viewmodel = new UserViewModel()
             {
@@ -167,7 +223,7 @@ namespace LMS.App.Web.Controllers
                 UserEmailAddress = vm.EmailAddress,
                 UserName = vm.UserName,
                 ActivationCode = Guid.NewGuid(),
-                
+
                 //UserDetails = vm.FullNameFullName,
                 Password = PasswordHelper.GetMd5Hash(vm.Password),
                 IsDeleted = vm.Inactive

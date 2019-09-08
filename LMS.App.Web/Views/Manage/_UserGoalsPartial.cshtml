@@ -1,0 +1,46 @@
+﻿@model IEnumerable<LMS.App.Web.Models.QualificationView>
+
+@{
+   
+}
+
+<div class="tab-content">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <tr>
+                    <th width="10%">
+                        QualificationId
+                    </th>
+                    <th>
+                       GoalName
+                    </th>
+                    <th>
+                       Description
+                    </th>
+                    <th>
+                    Acheived
+                    </th>
+
+                    <th>Action</th>
+                </tr>
+                <tbody class="tbody">
+
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>@item.QualificationId</td>
+                        <td>@item.QualificationName</td>
+                        <td>@item.QualificationCode</td>
+                        <td>@item.Remarks</td>
+
+                    </tr>
+                    }
+                </tbody>
+            </table>
+            <span id="norecords"></span>
+        </div>
+    </div>
+</div>
+   
+

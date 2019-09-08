@@ -2,74 +2,64 @@
 using System.Web.Mvc;
 using LMS.App.Core.Data;
 using LMS.App.Core.Data.Entities;
-using LMS.App.Core.Data.Repositories;
+using LMS.App.Core.Data.Repositories.Abstractions;
 using LMS.App.Web.Filters;
 using LMS.App.Web.Models;
 using Newtonsoft.Json;
 using AutoMapper;
-using System.Linq;
+using LMS.App.Core.Data.Repositories;
 
 namespace LMS.App.Web.Controllers
 {
     [CustomAuthorize(Roles = "Admin")]
-    public class CompanyController : Controller
+    public class CourseController : Controller
     {
-        public readonly UnitOfWork uow;
+        public readonly ICourseRepository _CourseRepo;
 
-        public CompanyController()
+        public CourseController()
         {
-             uow = new UnitOfWork();
+            _CourseRepo = new CourseRepository();
         }
-        [ActionName("GetCompany")]
-        public ActionResult CompanyIndex()
+        [ActionName("GetCourse")]
+        public ActionResult CourseIndex()
         {
-            return View("Company");
+            return View("Course");
         }
 
         [HttpGet]
-        public ActionResult GetCompanyModel()
+        public ActionResult GetCourseModel()
         {
             
-            return PartialView("_companyAdd",new CompanyViewModel());
+            return PartialView("_CourseAdd",new CourseViewModel());
         }
 
         [HttpPost]
-        [ActionName("CompanyAdd")]
-        public ActionResult Add(CompanyViewModel cvm)
+        [ActionName("CourseAdd")]
+        public ActionResult Add(CourseViewModel cvm)
         {
-          var company=   Mapper.Map<Company>(cvm);
-          var compnay = uow.CompanyRepository.Insert(company); uow.Save();
-            return Json(new { result = compnay!=null ? "true" : "false" }, JsonRequestBehavior.AllowGet);
+          var Course=   Mapper.Map<Course>(cvm);
+            var status = _CourseRepo.CreateCourse(Course); 
+            return Json(new { result = status ? "true" : "false" }, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int ID)
         {
-            uow.CompanyRepository.Delete(id);
-           var i= uow.Save();
-            var status= i>0; 
-            return Json(new { result = status}, JsonRequestBehavior.AllowGet);
+            var status = _CourseRepo.DeleteCourse((int)ID); 
+            return Json(new { result = status ? "true" : "false" }, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public ActionResult getbyID(int CompID)
         {
-            var vm = uow.CompanyRepository.GetByID(CompID);
-            return Json(new { companymodel = vm }, JsonRequestBehavior.AllowGet);
+            var vm =  _CourseRepo.EditCourse((int)CompID);
+            return Json(new { Coursemodel = vm }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public ActionResult Update(Company company)
+        public ActionResult Update(Course Course)
         {
-            uow.CompanyRepository.Update(company);
-            uow.Save();
-            var status= uow.Save()>0;
+            
+            var status = _CourseRepo.UpdateCourse(Course); 
             return Json(new { result = status ? "true" : "false" }, JsonRequestBehavior.AllowGet);
-        }
-        public JsonResult GetCompanies()
-        {
-           var companies =  uow.CompanyRepository.Get();
-           var list =  AutoMapper.Mapper.Map<List<Company>, List<CompanyViewModel>>(companies.ToList());
-            JsonConvert.SerializeObject(companies);
-            return Json(new { companiesList = companies }, JsonRequestBehavior.AllowGet);
         }
 
 

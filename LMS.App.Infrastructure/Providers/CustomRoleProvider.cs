@@ -53,7 +53,7 @@ namespace LMS.App.Infrastructure.Providers
 
         public override bool RoleExists(string roleName)
         {
-            throw new NotImplementedException();
+            return _roleRepository.GetRoles().Any(x => x.RoleName == roleName);
         }
 
         public override void AddUsersToRoles(string[] usernames, string[] rolenames)

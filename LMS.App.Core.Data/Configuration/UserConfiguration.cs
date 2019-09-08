@@ -3,7 +3,7 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace LMS.Ap.Core.Data.Configuration
 {
-    public class UserConfiguration: EntityTypeConfiguration<User>
+    public class UserConfiguration : EntityTypeConfiguration<User>
     {
         public UserConfiguration()
         {
@@ -20,8 +20,24 @@ namespace LMS.Ap.Core.Data.Configuration
             {
                 m.ToTable("Users");
             });
-            HasRequired(m => m.UserDetails).WithRequiredPrincipal(m => m.User);
-           
+            this.HasMany(u => u.Roles)
+            .WithMany()
+            .Map(m =>
+            {
+                m.ToTable("UserRoles");
+                m.MapLeftKey("UserId");
+                m.MapRightKey("RoleId");
+            });
+            this.HasMany(x => x.Qualifications)
+                .WithMany(x => x.Users)
+                .Map(t =>
+                    {
+                        t.MapRightKey("QualificationId");
+                        t.MapLeftKey("UserId");
+                        t.ToTable("QualificationsUsers");
+                    });
+            this.HasRequired(m => m.UserDetails).WithRequiredPrincipal(m => m.User);
+
         }
     }
     public class UserDetailsConfiguration : EntityTypeConfiguration<UserDetails>
@@ -41,10 +57,10 @@ namespace LMS.Ap.Core.Data.Configuration
             {
                 m.ToTable("UsersDetails");
             });
-            HasRequired(m => m.User).WithRequiredPrincipal(m => m.UserDetails);
+            //HasRequired(m => m.User).WithRequiredPrincipal(m => m.UserDetails);
         }
     }
-    
+
 
 
 }

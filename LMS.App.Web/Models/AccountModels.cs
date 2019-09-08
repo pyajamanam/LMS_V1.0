@@ -48,7 +48,7 @@ namespace LMS.App.Web.Models
             Countries = new List<SelectListItem>();
         }
         [Required]
-        [Display(Name = "User name")]
+        [Display(Name = "Preferred UserName")]
         public string UserName { get; set; }
 
         [Required]
@@ -88,6 +88,8 @@ namespace LMS.App.Web.Models
         public int IsActive { get; set; }
         public string NRIC { get; set; }
         public string Passport { get; set; }
+        public string EmployeeId { get; set; }
+
 
     }
 

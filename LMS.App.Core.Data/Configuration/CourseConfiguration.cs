@@ -7,12 +7,12 @@ namespace SchoolManagementSystem.Data.Configuration
     {
         public CourseConfiguration()
         {
-            Property(c => c.CourseId).IsRequired();
+            Property(c => c.CourseId).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity).IsRequired();
             Property(c => c.CourseName).IsRequired();
+            Property(c => c.CourseCode).IsRequired();
             this.HasKey(c => c.CourseId);
-            Property(c => c.Venue).IsOptional();
-            Property(p => p.CourseId).HasColumnName("CourseEnrolmentId").HasColumnType("int").IsRequired();
-
+            Property(c => c.Status).IsOptional();
         }
     }
+
 }

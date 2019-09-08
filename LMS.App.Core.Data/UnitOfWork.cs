@@ -16,6 +16,7 @@ namespace LMS.App.Core.Data
         private readonly GenericRepository<Role> roleRepository;
         private readonly GenericRepository<Course> courseRepository;
         private readonly GenericRepository<Company> companyRepository;
+        private readonly GenericRepository<Qualification> qualificationRepository;
 
         public GenericRepository<User> UserRepository
         {
@@ -25,6 +26,13 @@ namespace LMS.App.Core.Data
             }
         }
 
+        public GenericRepository<Qualification> QualificationRepository
+        {
+            get
+            {
+                return qualificationRepository ?? new GenericRepository<Qualification>(context);
+            }
+        }
         public GenericRepository<Role> RoleRepository
         {
             get

@@ -7,10 +7,15 @@ namespace SchoolManagementSystem.Data.Configuration
     {
         public QualificationConfiguration()
         {
+            Property(c => c.Id)
+            .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(c => c.QualificationId).IsRequired();
             Property(c => c.QualificationCode).IsRequired();
             Property(c => c.QualificationName).IsRequired();
+            Property(c => c.FontColorCardId).IsRequired();
+            Property(c => c.ColorId).IsRequired();
+            HasMany(c => c.Users).WithMany(x => x.Qualifications);
             //this.HasKey(c => c.QualificationId);
-            this.HasMany(c => c.Courses).WithOptional();
         }
     }
 }

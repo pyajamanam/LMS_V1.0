@@ -47,9 +47,13 @@ namespace LMS.App.Core.Data.Repositories
         {
             return dbSet.Find(id);
         }
-        public virtual void Insert(TEntity entity)
+        //public virtual TEntity GetByName(object name)
+        //{
+        //    return dbSet.Find(name);
+        //}
+        public virtual TEntity Insert(TEntity entity)
         {
-           dbSet.Add(entity);
+          return dbSet.Add(entity);
         }
         public virtual void Delete(object id)
         {
@@ -64,17 +68,14 @@ namespace LMS.App.Core.Data.Repositories
             }
             dbSet.Remove(entityToDelete);
         }
-        //public virtual void Update(TEntity entityToUpdate)
-        //{
-        //    dbSet.Attach(entityToUpdate);
-        //    var roleEntry = context.UserRoles.SingleOrDefault(r => r.UserId == userRole.UserId);
-        //    if (roleEntry != null)
-        //    {
-        //        context.UserRoles.Remove(roleEntry);
-        //        SaveChanges();
-        //    }
-        //    context.Entry(entityToUpdate).State = EntityState.Modified;
-        //}
+        public virtual void Update(TEntity entityToUpdate)
+        {
+                dbSet.Attach(entityToUpdate);
+            context.Entry(entityToUpdate).State = EntityState.Modified;
+            if (context.Entry(entityToUpdate).State == EntityState.Modified)
+            {
+            }
+        }
         //public virtual void Update(TEntity entityToUpdate, TEntity entity2ToUpdate)
         //{
         //    dbSet.Attach(entityToUpdate);
