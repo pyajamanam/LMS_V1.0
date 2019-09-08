@@ -8,6 +8,7 @@ namespace LMS.App.Common.Helpers
 {
     public class SecurityHelper
     {
+        
         public static bool IsAdmin
         {
             get; set;
